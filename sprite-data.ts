@@ -1,0 +1,43 @@
+namespace sprites {
+    /**
+     * Sets a function in the data of a sprite
+     */
+    //% blockId=spriteDataSetFunction block="set $sprite=variables_get data $name to function"
+    //% name.shadow="spriteDataFunctionNameShadow"
+    //% group="Data"
+    //% weight=8
+    //% handlerStatement=1
+    //% draggableParameters=reporter
+    //% blockGap=8
+    export function setDataFunction(sprite: Sprite, name: string, value: (parameters: any[]) => void) {
+        if (!sprite || !name) return;
+        const d = sprite.data;
+        d[name] = value;
+    }
+
+    /**
+     * Runs a function in the data of a sprite
+     */
+    //% blockId=spriteDataRunFunction block="run $sprite=variables_get data $name with $parameters"
+    //% name.shadow="spriteDataFunctionNameShadow"
+    //% parameters.shadow=variables_get
+    //% group="Data"
+    //% weight=8
+    //% blockGap=8
+    export function runDataFunction(sprite: Sprite, name: string, parameters: any[]) {
+        if (!sprite || !name) return;
+        const e = sprite.data;
+        if (typeof e[name] === "function") {
+            e[name](parameters);
+        }
+    }
+
+    //% block="$name"
+    //% blockId=spriteDataFunctionNameShadow
+    //% blockHidden=true shim=TD_ID
+    //% name.fieldEditor="autocomplete" name.fieldOptions.decompileLiterals=true
+    //% name.fieldOptions.key="spritedatafunction"
+    export function _functionNameShadow(name: string) {
+        return name;
+    }
+}

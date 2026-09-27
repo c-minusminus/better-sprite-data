@@ -20,7 +20,7 @@ namespace sprites {
      */
     //% blockId=spriteDataRunFunction block="run $sprite=variables_get data $name with $parameters"
     //% name.shadow="spriteDataFunctionNameShadow"
-    //% parameters.shadow=variables_get
+    //% parameters.shadow=lists_create_with
     //% group="Data"
     //% weight=8
     //% blockGap=8

@@ -1,4 +1,29 @@
 namespace sprites {
+    let last: any[] = []
+
+    /**
+     * Returns the last value returned by a sprite function
+     */
+    //% blockId=spritDataLastReturned block="sprite function last returned"
+    //% group="Data"
+    //% weight=7
+    //% blockGap=8
+    export function lastReturned(): any[] {
+        return last
+    }
+
+    /**
+     * Return a value in a sprite function
+     */
+    //% blockId=spritDataReturn block="return $ret"
+    //% ret.shadow=lists_create_with
+    //% group="Data"
+    //% weight=7
+    //% blockGap=8
+    export function returnValue(ret: any[]) {
+        last = ret
+    }
+
     /**
      * Sets a function in the data of a sprite
      */
@@ -9,10 +34,10 @@ namespace sprites {
     //% handlerStatement=1
     //% draggableParameters=reporter
     //% blockGap=8
-    export function setDataFunction(sprite: Sprite, name: string, value: (parameters: any[]) => void) {
-        if (!sprite || !name) return;
-        const d = sprite.data;
-        d[name] = value;
+    export function setDataFunction(sprite: Sprite, name: string, value: (parameters: any[]) => any) {
+        if (!sprite || !name) return
+        const d = sprite.data
+        d[name] = value
     }
 
     /**
@@ -25,11 +50,9 @@ namespace sprites {
     //% weight=8
     //% blockGap=8
     export function runDataFunction(sprite: Sprite, name: string, parameters: any[]) {
-        if (!sprite || !name) return;
-        const e = sprite.data;
-        if (typeof e[name] === "function") {
-            e[name](parameters);
-        }
+        if (!sprite || !name) return
+        const e = sprite.data
+        e[name](parameters)
     }
 
     //% block="$name"
@@ -38,6 +61,6 @@ namespace sprites {
     //% name.fieldEditor="autocomplete" name.fieldOptions.decompileLiterals=true
     //% name.fieldOptions.key="spritedatafunction"
     export function _functionNameShadow(name: string) {
-        return name;
+        return name
     }
 }
